@@ -1,9 +1,10 @@
-FROM ubuntu:bionic as base
-LABEL maintainer="tomasz@chorwat.pl"
-LABEL project="https://github.com/tchorwat/bedrock-in-docker"
+FROM ubuntu:focal as base
+LABEL maintainer="mgcaret@users.noreply.github.com"
+LABEL project="https://github.com/mgcaret/bedrock-in-docker"
 
 # Install dependencies
 RUN apt-get update \
+  && apt-get upgrade -y \
   && apt-get install -y \
     gosu \
     libcurl4 \
@@ -35,8 +36,8 @@ ENTRYPOINT ["/scripts/entrypoint.sh"]
 CMD ["bedrock_server"]
 
 FROM base
-LABEL maintainer="tomasz@chorwat.pl"
-LABEL project="https://github.com/tchorwat/bedrock-in-docker"
+LABEL maintainer="mgcaret@users.noreply.github.com"
+LABEL project="https://github.com/mgcaret/bedrock-in-docker"
 
 # Install awscli
 RUN wget -q -O "/root/awscliv2.zip" https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
